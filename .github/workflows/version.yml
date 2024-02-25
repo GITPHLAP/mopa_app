@@ -27,7 +27,8 @@ jobs:
               with:
                   fetch-depth: 0
                   persist-credentials: false
-
+            - name: print outputs3
+              run: ls
             # Extract versioning from git tags and commits, following semantic versioning rules.
             - uses: paulhatch/semantic-version@v5.4.0
               id: semver
