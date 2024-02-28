@@ -1,4 +1,4 @@
-package com.example.mopa_app.ui.dashboard
+package com.example.mopa_app.ui.before
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.mopa_app.databinding.FragmentDashboardBinding
+import com.example.mopa_app.databinding.FragmentBeforeBinding
 
-class DashboardFragment : Fragment() {
+class BeforeFragment : Fragment() {
 
-    private var _binding: FragmentDashboardBinding? = null
+    private var _binding: FragmentBeforeBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -22,14 +22,14 @@ class DashboardFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val dashboardViewModel =
-            ViewModelProvider(this).get(DashboardViewModel::class.java)
+        val beforeViewModel =
+            ViewModelProvider(this).get(BeforeViewModel::class.java)
 
-        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        _binding = FragmentBeforeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textDashboard
-        dashboardViewModel.text.observe(viewLifecycleOwner) {
+        val textView: TextView = binding.textBefore
+        beforeViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root
