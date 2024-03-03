@@ -16,7 +16,7 @@ jobs:
         name: Create version and push tag
         runs-on: ubuntu-latest
         outputs: 
-          version: ${{format('v{0}.{1}.{2}', steps.semver.outputs.major, steps.semver.outputs.minor, steps.semver.outputs.patch)}}
+          version: ${{format('{0}.{1}.{2}', steps.semver.outputs.major, steps.semver.outputs.minor, steps.semver.outputs.patch)}}
           increment: ${{steps.semver.outputs.increment}}
         permissions:
             contents: write
@@ -102,54 +102,3 @@ jobs:
               with:
                 name: android-release
                 path: build/app/outputs/bundle/release/app-release.aab
-            
-            # Extract versioning from git tags and commits, following semantic versioning rules.
-            - uses: paulhatch/semantic-version@v5.4.0
-              id: semver
-              with:
-                  tag_prefix: "v"
-                  major_pattern: "(MAJOR)"
-                  minor_pattern: "(MINOR)"
-                  # The version format is labeled by the branch that was pushed to, if it is a pull request, make an empty label
-                  version_format: "${major}.${minor}.${patch}-${{github.event_name != 'pull_request' && (contains(github.ref, 'release') && 'prerelease' || github.ref_name) || ''}}${increment}"
-                  bump_each_commit: false
-                  bump_each_commit_patch_pattern: ""
-                  user_format_type: "csv"
-                  enable_prerelease_mode: true
-
-            # Display the extracted version to the console.
-            - name: print outputs
-              run: echo ${{ steps.semver.outputs.version }}
-            - run: echo '${{format('v{0}.{1}.{2}', steps.semver.outputs.major, steps.semver.outputs.minor, steps.semver.outputs.patch)}}'
-                
-            # If a semantic version is specified in the PR title to master, 
-            # it will be in the commit message once the pr has been merged and it will overwrite the version from the paulhatch action.
-            - name: Extract version from commit
-              id: get_version_from_commit
-              if: github.ref_name == 'master'
-              run: |
-                echo "version=$(echo "${{github.event.head_commit.message}}" | grep -o -P "v[0-9]+\.[0-9]+\.[0-9]+" | sort -t: -u -k1,1)"  >> $GITHUB_OUTPUT
-            
-            # In order to make the tag push able to trigger the on: tag_push workflow,
-            # we need to use a personal access token instead of the build in GITHUB_TOKEN
-            - name: Create and push tag
-              if: github.ref_name == 'master'
-              run: |
-                git config --global url.https://${{secrets.USER_TOKEN}}@github.com/.insteadOf https://github.com/ && \
-                export TAG_VERSION=${{steps.get_version_from_commit.outputs.version == '' && format('v{0}.{1}.{2}', steps.semver.outputs.major, steps.semver.outputs.minor, steps.semver.outputs.patch) || steps.get_version_from_commit.outputs.version}} && \
-                git tag $TAG_VERSION && \
-                git push origin $TAG_VERSION
-            - name: Create version file
-              run: echo ${{format('v{0}.{1}.{2}', steps.semver.outputs.major, steps.semver.outputs.minor, steps.semver.outputs.patch)}} > version.txt
-            - name: Create increment file
-              run: echo ${{steps.semver.outputs.increment}} > increment.txt
-            - name: Upload version
-              uses: actions/upload-artifact@v2
-              with:
-                name: gitversion
-                path: version.txt
-            - name: Upload increment
-              uses: actions/upload-artifact@v2
-              with:
-                name: gitincrement
-                path: increment.txt
