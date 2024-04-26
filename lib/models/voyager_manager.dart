@@ -56,10 +56,7 @@ class VoyagerManager {
       case TankTypes.fuel:
         return sumOfFuelAfterReadings - sumOfFuelBeforeReadings;
       default:
+        return 0;
     }
-    double limit = voyager.ship.tanks.where((element) => element.type == TankTypes.grey)
-      .fold(0, (sum, item) => sum + item.limit);
-    // Each person use 50 liters of grey each day
-    return (limit-sumOfGreyBeforeReadings) / (voyager.peopleCount * 50); 
   }
 }
