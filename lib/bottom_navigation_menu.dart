@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:mopa_app/Screens/after.dart';
 import 'package:mopa_app/Screens/before.dart';
 import 'package:mopa_app/Screens/options.dart';
-import 'package:mopa_app/utility/values.dart';
 
 class BottomNavigationMenu extends StatefulWidget {
   const BottomNavigationMenu({super.key});
@@ -14,8 +13,8 @@ class BottomNavigationMenu extends StatefulWidget {
 
 class _BottomNavigationMenuState extends State<BottomNavigationMenu> {
   static const List<Widget> _pages = <Widget>[
-    AfterWidget(),
     BeforeWidget(),
+    AfterWidget(),
     OptionsWidget()
   ];
 
