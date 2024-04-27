@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mopa_app/bottom_navigation_menu.dart';
-import 'package:mopa_app/utility/values.dart';
 
 void main() {
   runApp(const MopaApp());

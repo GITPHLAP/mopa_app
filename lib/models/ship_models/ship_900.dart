@@ -12,13 +12,13 @@ class Ship900 implements Ship{
   List<Tank> get tanks => _tanks;
 
   Ship900() {
-    _tanks.add(WaterTank(Positions.forpeek, 1000));
-    _tanks.add(WaterTank(Positions.sb, 1000.2));
-    _tanks.add(WaterTank(Positions.bb, 1000.2));
-    _tanks.add(FuelTank(Positions.dagtank, 1000.2));
-    _tanks.add(FuelTank(Positions.sb, 1000.2));
-    _tanks.add(FuelTank(Positions.bb, 1000.2));
-    _tanks.add(GreyTank(Positions.sb, 1000.2));
-    _tanks.add(BlackTank(Positions.bb, 1000.2));
+    _tanks.add(WaterTank(Positions.forepeak, 1000));
+    _tanks.add(WaterTank(Positions.starboard, 1000.2));
+    _tanks.add(WaterTank(Positions.portside, 1000.2));
+    _tanks.add(FuelTank(Positions.daytank, 1000.2));
+    _tanks.add(FuelTank(Positions.starboard, 1000.2));
+    _tanks.add(FuelTank(Positions.portside, 1000.2));
+    _tanks.add(GreyTank(Positions.starboard, 1000.2));
+    _tanks.add(BlackTank(Positions.portside, 1000.2));
   }
 }
