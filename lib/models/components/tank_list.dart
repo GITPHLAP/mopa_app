@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:mopa_app/models/tank_models/tank.dart';
 
 class TankList extends StatefulWidget {
@@ -16,25 +17,22 @@ class TankList extends StatefulWidget {
 class _TankListState extends State<TankList> {
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return Flexible(
       child: Column(
         children: [
           for (Tank tank in widget.tanks)
-            Expanded(
-              child: Row(
-                children: [
-                  tank.type.icon,
-                  const SizedBox(width: 10),
-                  Text(tank.position.name),
-                  const SizedBox(width: 10),
-                  const Expanded(
-                    child: TextField(
-                      decoration: InputDecoration(label: Text("Reading")),
-                    ),
-                  )
-                ],
+            TextField(
+              decoration: InputDecoration(
+                label: Row(
+                  children: [
+                    tank.type.icon, // Icon
+                    const Flexible(child: FractionallySizedBox(widthFactor: 0.05)),
+                    Text(tank.position.name), // Name
+                  ],
+                ),
               ),
-            )
+              keyboardType: TextInputType.number,
+            ),
         ],
       ),
     );

@@ -4,7 +4,7 @@ enum Positions {forepeak, starboard, portside, daytank}
 
 enum TankTypes {
   water(
-    icon: Icon(Icons.local_drink),
+    icon: Icon(Icons.local_drink, color: Colors.blueAccent,),
     name: "Water"
   ), 
   black(
@@ -12,7 +12,7 @@ enum TankTypes {
     name: "Black"
   ), 
   grey(
-    icon: Icon(Icons.water_drop, color: Colors.blueGrey,),
+    icon: Icon(Icons.water_drop, color: Colors.grey,),
     name: "Grey"
   ), 
   fuel(
