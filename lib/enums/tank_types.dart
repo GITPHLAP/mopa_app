@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-enum Positions {forepeak, starboard, portside, daytank}
-
 enum TankTypes {
   water(
     icon: Icon(Icons.local_drink, color: Colors.blueAccent,),

@@ -1,4 +1,5 @@
-import 'package:mopa_app/models/enums.dart';
+import '../../enums/positions.dart';
+import '../../enums/tank_types.dart';
 
 abstract class Tank {
   abstract final TankTypes type; 

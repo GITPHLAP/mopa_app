@@ -1,5 +1,7 @@
-import 'package:mopa_app/models/enums.dart';
 import 'package:mopa_app/models/tank_models/tank.dart';
+
+import '../../enums/positions.dart';
+import '../../enums/tank_types.dart';
 
 class FuelTank implements Tank {
   @override

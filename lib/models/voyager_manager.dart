@@ -1,7 +1,8 @@
-import 'package:mopa_app/models/enums.dart';
 import 'package:mopa_app/models/reading.dart';
 import 'package:mopa_app/models/ship_models/ship.dart';
 import 'package:mopa_app/models/voyager.dart';
+
+import '../enums/tank_types.dart';
 
 class VoyagerManager {
   Voyager? _voyager;
