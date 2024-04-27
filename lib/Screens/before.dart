@@ -1,22 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mopa_app/models/components/tank_list.dart';
-import 'package:mopa_app/models/enums.dart';
-import 'package:mopa_app/models/ship_models/ship.dart';
-import 'package:mopa_app/models/ship_models/ship_900.dart';
+import 'package:mopa_app/provider/voyager_provider.dart';
 
-class BeforeWidget extends StatefulWidget {
+import '../enums/tank_types.dart';
+
+class BeforeWidget extends ConsumerWidget {
   const BeforeWidget({super.key});
 
   @override
-  State<BeforeWidget> createState() => _BeforeWidgetState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final ship = ref.watch(getShipProvider);
 
-class _BeforeWidgetState extends State<BeforeWidget> {
-  final Ship ship = Ship900();
 
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Before"),

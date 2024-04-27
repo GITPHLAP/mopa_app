@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mopa_app/bottom_navigation_menu.dart';
 
 void main() {
-  runApp(const MopaApp());
+  runApp(const ProviderScope(child: MopaApp()));
 }
 
 class MopaApp extends StatelessWidget {

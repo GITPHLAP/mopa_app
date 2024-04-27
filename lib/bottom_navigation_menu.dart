@@ -12,10 +12,10 @@ class BottomNavigationMenu extends StatefulWidget {
 }
 
 class _BottomNavigationMenuState extends State<BottomNavigationMenu> {
-  static const List<Widget> _pages = <Widget>[
+  static final List<Widget> _pages = <Widget>[
     BeforeWidget(),
-    AfterWidget(),
-    OptionsWidget()
+    const AfterWidget(),
+    const OptionsWidget()
   ];
 
   int _selectedIndex = 0;
