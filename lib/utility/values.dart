@@ -1,8 +1,7 @@
 const appTitle = "Mopa App";
 
-const firstPageTitle = "Before";
-const secondPageTitle = "After";
-const thirdPageTitle = "Result";
+const beforePageTitle = "Before";
+const afterPageTitle = "After";
 const optionPageTitle = "Options";
 
 const starBoard = "Starboard";

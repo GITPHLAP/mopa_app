@@ -4,6 +4,7 @@ import 'package:mopa_app/models/components/tank_list.dart';
 import 'package:mopa_app/models/reading.dart';
 import 'package:mopa_app/models/tank_models/tank.dart';
 import 'package:mopa_app/provider/voyager_provider.dart';
+import 'package:mopa_app/utility/values.dart';
 
 import '../enums/tank_types.dart';
 
@@ -21,7 +22,7 @@ class _BeforeWidgetState extends ConsumerState<BeforeWidget> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Before"),
+        title: const Text(beforePageTitle),
         centerTitle: true,
       ),
       body: Column(
@@ -29,18 +30,14 @@ class _BeforeWidgetState extends ConsumerState<BeforeWidget> {
           Expanded(
             child: Row(
               children: [
-                const SizedBox(
-                  width: 10,
-                ),
+                const SizedBox(width: defaultSpace),
                 TankList(
                   ship.tanks
                       .where((element) => element.type == TankTypes.water)
                       .toList(),
                   onChanged: onReadingChanged,
                 ),
-                const SizedBox(
-                  width: 10,
-                ),
+                const SizedBox(width: defaultSpace),
                 TankList(
                   ship.tanks
                       .where((element) =>
@@ -49,18 +46,14 @@ class _BeforeWidgetState extends ConsumerState<BeforeWidget> {
                       .toList(),
                   onChanged: onReadingChanged,
                 ),
-                const SizedBox(
-                  width: 10,
-                ),
+                const SizedBox(width: defaultSpace),
                 TankList(
                   ship.tanks
                       .where((element) => element.type == TankTypes.fuel)
                       .toList(),
                   onChanged: onReadingChanged,
                 ),
-                const SizedBox(
-                  width: 10,
-                ),
+                const SizedBox(width: defaultSpace),
               ],
             ),
           ),
@@ -71,10 +64,10 @@ class _BeforeWidgetState extends ConsumerState<BeforeWidget> {
     );
   }
 
-  /// Used to add a before reading when textField change
+  /// Used to add and update a before reading when textField change
   void onReadingChanged(String val, Tank tank) {
     double? readingValue = double.tryParse(val);
-    // TODO: Add validation on text field 
+    // TODO: Add validation on text field
     // if value is null do nothing
     if (readingValue == null) {
       return;
