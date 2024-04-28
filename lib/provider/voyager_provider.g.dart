@@ -34,7 +34,7 @@ final getShipTypeProvider = AutoDisposeProvider<ShipTypes>.internal(
 );
 
 typedef GetShipTypeRef = AutoDisposeProviderRef<ShipTypes>;
-String _$voyagerNotifierHash() => r'0d613d16b65371a93a35741defede1c54a64d3d7';
+String _$voyagerNotifierHash() => r'416e9a085a45ee202f6262bb2ab675fc9840b7b1';
 
 /// See also [VoyagerNotifier].
 @ProviderFor(VoyagerNotifier)

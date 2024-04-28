@@ -13,7 +13,7 @@ class BottomNavigationMenu extends StatefulWidget {
 
 class _BottomNavigationMenuState extends State<BottomNavigationMenu> {
   static final List<Widget> _pages = <Widget>[
-    BeforeWidget(),
+    const BeforeWidget(),
     const AfterWidget(),
     const OptionsWidget()
   ];

@@ -1,4 +1,5 @@
 import 'package:mopa_app/enums/ship_types.dart';
+import 'package:mopa_app/models/reading.dart';
 import 'package:mopa_app/models/ship_models/ship.dart';
 import 'package:mopa_app/models/ship_models/ship_800.dart';
 import 'package:mopa_app/models/ship_models/ship_900.dart';
@@ -33,11 +34,27 @@ class VoyagerNotifier extends _$VoyagerNotifier {
     }
     state = Voyager(state.peopleCount, ship);
   }
-}
 
-// final voyagerNotifierProvider = NotifierProvider<VoyagerNotifier, Voyager>(() {
-//   return VoyagerNotifier();
-// });
+  void addBeforeReading(Reading reading) {
+    int indexOfElement = state.beforeReadings.indexWhere((element) => element.tank == reading.tank);
+    if (indexOfElement == -1){
+      state.beforeReadings.add(reading);
+      return;
+    }
+    state.beforeReadings[indexOfElement] = reading;
+    return;
+  }
+
+  void addAfterReading(Reading reading) {
+    int indexOfElement = state.afterReadings.indexWhere((element) => element.tank == reading.tank);
+    if (indexOfElement == -1){
+      state.afterReadings.add(reading);
+      return;
+    }
+    state.afterReadings[indexOfElement] = reading;
+    return;
+  }
+}
 
 @riverpod
 Ship getShip(ref) {
@@ -49,7 +66,7 @@ Ship getShip(ref) {
 @riverpod
 ShipTypes getShipType(ref) {
   final voyager = ref.watch(voyagerNotifierProvider);
-  if(voyager.ship is Ship800 ) {
+  if (voyager.ship is Ship800) {
     return ShipTypes.class800;
   }
   return ShipTypes.class900;
