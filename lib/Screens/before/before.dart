@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mopa_app/models/components/tank_list.dart';
+import 'package:mopa_app/Screens/before/calculations.dart';
+import 'package:mopa_app/components/tank_list.dart';
 import 'package:mopa_app/models/reading.dart';
 import 'package:mopa_app/models/tank_models/tank.dart';
 import 'package:mopa_app/provider/voyager_provider.dart';
 import 'package:mopa_app/utility/values.dart';
 
-import '../enums/tank_types.dart';
+import '../../enums/tank_types.dart';
 
 class BeforeWidget extends ConsumerStatefulWidget {
   const BeforeWidget({super.key});
@@ -58,7 +59,9 @@ class _BeforeWidgetState extends ConsumerState<BeforeWidget> {
             ),
           ),
           // Calculation part
-          const Expanded(child: Text("data")),
+          const Expanded(
+            child: BeforeCalculation(),
+          ),
         ],
       ),
     );

@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:mopa_app/utility/values.dart';
 
 enum TankTypes {
   water(
-    icon: Icon(Icons.local_drink, color: Colors.blueAccent,),
+    icon: waterIcon,
     name: "Water"
   ), 
   black(
-    icon: Icon(Icons.water_drop, color: Colors.brown,),
+    icon: blackIcon,
     name: "Black"
   ), 
   grey(
-    icon: Icon(Icons.water_drop, color: Colors.grey,),
+    icon: greyIcon,
     name: "Grey"
   ), 
   fuel(
-    icon: Icon(Icons.oil_barrel),
+    icon: fuelIcon,
     name: "Fuel"
   );
 

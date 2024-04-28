@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:mopa_app/Screens/after.dart';
-import 'package:mopa_app/Screens/before.dart';
+import 'package:mopa_app/Screens/before/before.dart';
 import 'package:mopa_app/Screens/options.dart';
 
 class BottomNavigationMenu extends StatefulWidget {
