@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mopa_app/components/tank_list.dart';
+import 'package:mopa_app/components/tank_widgets/tank_list.dart';
 import 'package:mopa_app/enums/tank_types.dart';
 import 'package:mopa_app/models/tank_models/tank.dart';
 import 'package:mopa_app/provider/voyager_manager_provider.dart';

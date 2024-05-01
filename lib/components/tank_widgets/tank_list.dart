@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mopa_app/components/tank_widgets/tank_textfield_widget.dart';
 import 'package:mopa_app/models/tank_models/tank.dart';
 
 class TankList extends StatefulWidget {
@@ -20,22 +21,7 @@ class _TankListState extends State<TankList> {
     return Flexible(
       child: Column(
         children: widget.tanks.map((tank) {
-          return TextField(
-            onChanged: (value) {
-              widget.onChanged(value, tank);
-            },
-            decoration: InputDecoration(
-              label: Row(
-                children: [
-                  tank.type.icon, // Icon
-                  const Flexible(
-                      child: FractionallySizedBox(widthFactor: 0.05)),
-                  Text(tank.position.name), // Name
-                ],
-              ),
-            ),
-            keyboardType: TextInputType.number,
-          );
+          return TankTextFieldWidget(onChanged: widget.onChanged, tank: tank);
         }).toList(),
       ),
     );
