@@ -1,3 +1,4 @@
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:mopa_app/enums/ship_types.dart';
 import 'package:mopa_app/models/reading.dart';
 import 'package:mopa_app/models/ship_models/ship.dart';
@@ -33,7 +34,8 @@ class VoyagerManagerNotifier extends _$VoyagerManagerNotifier {
         ship = Ship900();
         break;
     }
-    state = state.copyWith.voyager(ship: ship);
+    // When changing ship its need to reset readings, because tanks is not equal.
+    state = state.copyWith.voyager(ship: ship, afterReadings: const IList.empty(), beforeReadings: const IList.empty());
   }
 
   void addBeforeReading(Reading reading) {
