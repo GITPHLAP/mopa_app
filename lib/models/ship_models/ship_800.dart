@@ -13,12 +13,12 @@ class Ship800 implements Ship{
   List<Tank> get tanks => _tanks;
 
   Ship800() {
-    _tanks.add(WaterTank(Positions.starboard, 1000.2));
-    _tanks.add(WaterTank(Positions.portside, 1000.2));
-    _tanks.add(FuelTank(Positions.daytank, 1000.2));
-    _tanks.add(FuelTank(Positions.starboard, 1000.2));
-    _tanks.add(FuelTank(Positions.portside, 1000.2));
-    _tanks.add(GreyTank(Positions.starboard, 1000.2));
-    _tanks.add(BlackTank(Positions.portside, 1000.2));
+    _tanks.add(WaterTank(Positions.starboard, 3000));
+    _tanks.add(WaterTank(Positions.portside, 3000));
+    _tanks.add(FuelTank(Positions.daytank, 3000));
+    _tanks.add(FuelTank(Positions.starboard, 3000));
+    _tanks.add(FuelTank(Positions.portside, 3000));
+    _tanks.add(GreyTank(Positions.starboard, 2000));
+    _tanks.add(BlackTank(Positions.portside, 2000));
   }
 }
