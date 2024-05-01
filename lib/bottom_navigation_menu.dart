@@ -1,8 +1,8 @@
 
 import 'package:flutter/material.dart';
-import 'package:mopa_app/Screens/after.dart';
-import 'package:mopa_app/Screens/before/before.dart';
-import 'package:mopa_app/Screens/options.dart';
+import 'package:mopa_app/screens/after/after.dart';
+import 'package:mopa_app/screens/before/before.dart';
+import 'package:mopa_app/screens/options.dart';
 
 class BottomNavigationMenu extends StatefulWidget {
   const BottomNavigationMenu({super.key});
