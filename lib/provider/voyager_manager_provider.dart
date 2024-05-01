@@ -57,10 +57,13 @@ class VoyagerManagerNotifier extends _$VoyagerManagerNotifier {
     int indexOfElement = state.voyager.afterReadings
         .indexWhere((element) => element.tank == reading.tank);
     if (indexOfElement == -1) {
-      state.voyager.afterReadings.add(reading);
+      state = state.copyWith
+          .voyager(afterReadings: state.voyager.afterReadings.add(reading));
       return;
     }
-    // state.voyager.afterReadings[indexOfElement] = reading;
+    state = state.copyWith.voyager(
+        afterReadings:
+            state.voyager.afterReadings.replace(indexOfElement, reading));
     return;
   }
 }

@@ -41,6 +41,6 @@ class _AfterWidgetState extends ConsumerState<AfterWidget> {
     readingValue ??= 0;
 
     Reading newReading = Reading(tank: tank, value: readingValue);
-    ref.read(voyagerManagerNotifierProvider.notifier).addBeforeReading(newReading);
+    ref.read(voyagerManagerNotifierProvider.notifier).addAfterReading(newReading);
   }
 }
