@@ -36,22 +36,22 @@ class _BeforeCalculationState extends ConsumerState<BeforeCalculation> {
           TableRow(children: <Widget>[
             const TableCell(child: waterIcon),
             TableCell(child: Text("${voyagerManager.sumOfWaterBeforeReadings}L")),
-            TableCell(child: Text("${voyagerManager.daysOfSaillingAccordingWater()} Days")),
+            TableCell(child: Text("${voyagerManager.daysOfSaillingAccordingWater().toStringAsFixed(2)} Days")),
           ]),
           TableRow(children: <Widget>[
             const TableCell(child: greyIcon),
             TableCell(child: Text("${voyagerManager.sumOfGreyBeforeReadings}L")),
-            TableCell(child: Text("${voyagerManager.daysOfSaillingAccordingGrey()} Days")),
+            TableCell(child: Text("${voyagerManager.daysOfSaillingAccordingGrey().toStringAsFixed(2)} Days")),
           ]),
           TableRow(children: <Widget>[
             const TableCell(child: blackIcon),
             TableCell(child: Text("${voyagerManager.sumOfBlackBeforeReadings}L")),
-            TableCell(child: Text("${voyagerManager.daysOfSaillingAccordingBlack()} Days")),
+            TableCell(child: Text("${voyagerManager.daysOfSaillingAccordingBlack().toStringAsFixed(2)} Days")),
           ]),
           TableRow(children: <Widget>[
             const TableCell(child: fuelIcon),
             TableCell(child: Text("${voyagerManager.sumOfFuelBeforeReadings}L")),
-            TableCell(child: Text("${voyagerManager.hoursOfSaillingAccordingFuel()} Hours")),
+            TableCell(child: Text("${voyagerManager.hoursOfSaillingAccordingFuel().toStringAsFixed(2)} Hours")),
           ]),
         ],
       ),

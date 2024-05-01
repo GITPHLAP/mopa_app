@@ -71,11 +71,7 @@ class _BeforeWidgetState extends ConsumerState<BeforeWidget> {
   void onReadingChanged(String val, Tank tank) {
     double? readingValue = double.tryParse(val);
     // TODO: Add validation on text field
-    // if value is null set readingValue to 0
-    if (readingValue == null) {
-      readingValue = 0;
-      return;
-    }
+    readingValue ??= 0;
 
     Reading newReading = Reading(tank: tank, value: readingValue);
     ref.read(voyagerManagerNotifierProvider.notifier).addBeforeReading(newReading);
