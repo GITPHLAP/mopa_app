@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'voyager_provider.dart';
+part of 'voyager_manager_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getShipHash() => r'a7a90e5f41497681f665f2f906fa49406331d71d';
+String _$getShipHash() => r'd0b609f4f8fac18884808b84c113ca4d6642556a';
 
 /// See also [getShip].
 @ProviderFor(getShip)
@@ -20,7 +20,7 @@ final getShipProvider = AutoDisposeProvider<Ship>.internal(
 );
 
 typedef GetShipRef = AutoDisposeProviderRef<Ship>;
-String _$getShipTypeHash() => r'230deb9bd75e3e8a62ae2baf070d5928f48b842f';
+String _$getShipTypeHash() => r'4a7ca6db509413787683192e26cb1c60d252fb62';
 
 /// See also [getShipType].
 @ProviderFor(getShipType)
@@ -34,21 +34,36 @@ final getShipTypeProvider = AutoDisposeProvider<ShipTypes>.internal(
 );
 
 typedef GetShipTypeRef = AutoDisposeProviderRef<ShipTypes>;
-String _$voyagerNotifierHash() => r'416e9a085a45ee202f6262bb2ab675fc9840b7b1';
+String _$getVoyagerHash() => r'e26161448d447f58f0a57a9d720ffc63a3a3bbd1';
 
-/// See also [VoyagerNotifier].
-@ProviderFor(VoyagerNotifier)
-final voyagerNotifierProvider =
-    AutoDisposeNotifierProvider<VoyagerNotifier, Voyager>.internal(
-  VoyagerNotifier.new,
-  name: r'voyagerNotifierProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$voyagerNotifierHash,
+/// See also [getVoyager].
+@ProviderFor(getVoyager)
+final getVoyagerProvider = AutoDisposeProvider<Voyager>.internal(
+  getVoyager,
+  name: r'getVoyagerProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$getVoyagerHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$VoyagerNotifier = AutoDisposeNotifier<Voyager>;
+typedef GetVoyagerRef = AutoDisposeProviderRef<Voyager>;
+String _$voyagerManagerNotifierHash() =>
+    r'87639258c2b2140dda01d37428feee6e0678ce06';
+
+/// See also [VoyagerManagerNotifier].
+@ProviderFor(VoyagerManagerNotifier)
+final voyagerManagerNotifierProvider = AutoDisposeNotifierProvider<
+    VoyagerManagerNotifier, VoyagerManager>.internal(
+  VoyagerManagerNotifier.new,
+  name: r'voyagerManagerNotifierProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$voyagerManagerNotifierHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$VoyagerManagerNotifier = AutoDisposeNotifier<VoyagerManager>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mopa_app/enums/ship_types.dart';
-import 'package:mopa_app/provider/voyager_provider.dart';
+import 'package:mopa_app/provider/voyager_manager_provider.dart';
 import 'package:mopa_app/utility/values.dart';
 
 class OptionsWidget extends ConsumerStatefulWidget {
@@ -22,9 +22,9 @@ class _OptionsWidgetState extends ConsumerState<OptionsWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final voyager = ref.watch(voyagerNotifierProvider);
+    final voyagerManager = ref.watch(voyagerManagerNotifierProvider);
     final shipType = ref.watch(getShipTypeProvider);
-    _personAmountController.text = voyager.peopleCount.toString();
+    _personAmountController.text = voyagerManager.voyager.peopleCount.toString();
     return Scaffold(
       appBar: AppBar(
         title: const Text(optionPageTitle),
@@ -77,12 +77,12 @@ class _OptionsWidgetState extends ConsumerState<OptionsWidget> {
   }
 
   void onSelectShipType(ShipTypes? value) {
-    ref.read(voyagerNotifierProvider.notifier).changeShip(value!);
+    ref.read(voyagerManagerNotifierProvider.notifier).changeShip(value!);
   }
 
   void onEditingComplete() {
     ref
-        .read(voyagerNotifierProvider.notifier)
+        .read(voyagerManagerNotifierProvider.notifier)
         .changeAmountOfPersons(int.parse(_personAmountController.text));
   }
 }

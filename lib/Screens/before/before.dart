@@ -4,7 +4,7 @@ import 'package:mopa_app/Screens/before/calculations.dart';
 import 'package:mopa_app/components/tank_list.dart';
 import 'package:mopa_app/models/reading.dart';
 import 'package:mopa_app/models/tank_models/tank.dart';
-import 'package:mopa_app/provider/voyager_provider.dart';
+import 'package:mopa_app/provider/voyager_manager_provider.dart';
 import 'package:mopa_app/utility/values.dart';
 
 import '../../enums/tank_types.dart';
@@ -71,12 +71,13 @@ class _BeforeWidgetState extends ConsumerState<BeforeWidget> {
   void onReadingChanged(String val, Tank tank) {
     double? readingValue = double.tryParse(val);
     // TODO: Add validation on text field
-    // if value is null do nothing
+    // if value is null set readingValue to 0
     if (readingValue == null) {
+      readingValue = 0;
       return;
     }
 
-    Reading newReading = Reading(tank, readingValue);
-    ref.read(voyagerNotifierProvider.notifier).addBeforeReading(newReading);
+    Reading newReading = Reading(tank: tank, value: readingValue);
+    ref.read(voyagerManagerNotifierProvider.notifier).addBeforeReading(newReading);
   }
 }

@@ -1,20 +1,22 @@
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mopa_app/models/reading.dart';
-import 'package:mopa_app/models/ship_models/ship.dart';
 import 'package:mopa_app/models/voyager.dart';
 
 import '../enums/tank_types.dart';
 
-class VoyagerManager {
-  Voyager? _voyager;
-  double _getSumOfReadings(List<Reading> readings, TankTypes type) {
+part 'voyager_manager.freezed.dart';
+
+@freezed
+class VoyagerManager with _$VoyagerManager{
+  // Need empty constructer to use defined methods.
+  const VoyagerManager._();
+  const factory VoyagerManager(Voyager voyager ) = _VoyagerManager;
+
+  double _getSumOfReadings(IList<Reading> readings, TankTypes type) {
     return readings.where((element) => element.tank.type == type)
     .fold(0, (sum, item) => sum + item.value);
   }
-  Voyager get voyager => _voyager!;
-  createNewVoyager(int peopleCount, Ship ship) {
-    _voyager = Voyager(peopleCount, ship);
-  }
-
 
   double get sumOfWaterBeforeReadings => _getSumOfReadings(voyager.beforeReadings, TankTypes.water);
   double get sumOfWaterAfterReadings => _getSumOfReadings(voyager.afterReadings, TankTypes.water);

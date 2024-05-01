@@ -1,18 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mopa_app/provider/voyager_manager_provider.dart';
 import 'package:mopa_app/utility/values.dart';
 
-class BeforeCalculation extends StatefulWidget {
+class BeforeCalculation extends ConsumerStatefulWidget {
   const BeforeCalculation({super.key});
 
   @override
-  State<BeforeCalculation> createState() => _BeforeCalculationState();
+  ConsumerState<BeforeCalculation> createState() => _BeforeCalculationState();
 }
 
-class _BeforeCalculationState extends State<BeforeCalculation> {
+class _BeforeCalculationState extends ConsumerState<BeforeCalculation> {
   @override
   Widget build(BuildContext context) {
+    final voyagerManager = ref.watch(voyagerManagerNotifierProvider);
+
     return Padding(
       padding: const EdgeInsets.all(defaultPadding),
       child: Table(
@@ -22,61 +26,35 @@ class _BeforeCalculationState extends State<BeforeCalculation> {
           2: FlexColumnWidth(3),
         },
         children:  [
-          TableRow(children: <Widget>[
+          const TableRow(children: <Widget>[
             TableCell(
-              
-              child: Container(),),
+              child: Text("Type"),
+            ),
             TableCell(child: Text("Total")),
             TableCell(child: Text("Sailing time")),
           ]),
           TableRow(children: <Widget>[
-            TableCell(child: waterIcon),
-            TableCell(child: waterIcon),
-            TableCell(child: waterIcon),
+            const TableCell(child: waterIcon),
+            TableCell(child: Text("${voyagerManager.sumOfWaterBeforeReadings}L")),
+            TableCell(child: Text("${voyagerManager.daysOfSaillingAccordingWater()} Days")),
           ]),
           TableRow(children: <Widget>[
-            TableCell(child: greyIcon),
-            TableCell(child: waterIcon),
-            TableCell(child: waterIcon),
+            const TableCell(child: greyIcon),
+            TableCell(child: Text("${voyagerManager.sumOfGreyBeforeReadings}L")),
+            TableCell(child: Text("${voyagerManager.daysOfSaillingAccordingGrey()} Days")),
           ]),
           TableRow(children: <Widget>[
-            TableCell(child: blackIcon),
-            TableCell(child: waterIcon),
-            TableCell(child: waterIcon),
+            const TableCell(child: blackIcon),
+            TableCell(child: Text("${voyagerManager.sumOfBlackBeforeReadings}L")),
+            TableCell(child: Text("${voyagerManager.daysOfSaillingAccordingBlack()} Days")),
           ]),
           TableRow(children: <Widget>[
-            TableCell(child: fuelIcon),
-            TableCell(child: waterIcon),
-            TableCell(child: waterIcon),
+            const TableCell(child: fuelIcon),
+            TableCell(child: Text("${voyagerManager.sumOfFuelBeforeReadings}L")),
+            TableCell(child: Text("${voyagerManager.hoursOfSaillingAccordingFuel()} Hours")),
           ]),
         ],
       ),
     );
   }
 }
-
-      // Column(
-      //   children: [
-      //     Expanded(child: Row(
-      //       children: [
-      //         waterIcon,
-      //         Text("data")
-      //       ],
-      //     )),
-      //     Expanded(child: Row(
-      //       children: [
-      //         greyIcon,
-      //       ],
-      //     )),
-      //     Expanded(child: Row(
-      //       children: [
-      //         blackIcon,
-      //       ],
-      //     )),
-      //     Expanded(child: Row(
-      //       children: [
-      //         fuelIcon,
-      //       ],
-      //     ))
-      //   ],
-      // ),

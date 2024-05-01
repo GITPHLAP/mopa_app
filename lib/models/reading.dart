@@ -1,8 +1,10 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mopa_app/models/tank_models/tank.dart';
 
-class Reading {
-  Tank tank;
-  double value;
+part 'reading.freezed.dart';
 
-  Reading(this.tank, this.value);
+@freezed
+class Reading with _$Reading {
+  const factory Reading({required Tank tank, required double value}) = _Reading;
+
 }
