@@ -50,6 +50,6 @@ class _TankTextFieldWidgetState extends State<TankTextFieldWidget> {
     double? readingValue = double.tryParse(value);
     readingValue ??= 0;
 
-    return fieldTank.limit > readingValue;
+    return fieldTank.limit >= readingValue;
   }
 }
