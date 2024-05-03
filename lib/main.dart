@@ -4,6 +4,8 @@ import 'package:mopa_app/bottom_navigation_menu.dart';
 import 'package:mopa_app/theme/theme.dart';
 
 void main() {
+  // Needed to use sqflite
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const ProviderScope(child: MopaApp()));
 }
 
