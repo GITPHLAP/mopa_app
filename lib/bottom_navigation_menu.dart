@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mopa_app/screens/after/after.dart';
 import 'package:mopa_app/screens/before/before.dart';
 import 'package:mopa_app/screens/options.dart';
+import 'package:mopa_app/theme/theme.dart';
 
 class BottomNavigationMenu extends StatefulWidget {
   const BottomNavigationMenu({super.key});
@@ -41,12 +42,13 @@ class _BottomNavigationMenuState extends State<BottomNavigationMenu> {
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
         // Style
+        
         type: BottomNavigationBarType.shifting,
         selectedFontSize: 20,
         selectedIconTheme: const IconThemeData(size: 40),
-        selectedItemColor: Theme.of(context).primaryColor,
+        selectedItemColor: AppColors.primaryColor,
         selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
-        unselectedIconTheme: IconThemeData(color: Theme.of(context).disabledColor),
+        unselectedIconTheme: IconThemeData(color: AppColors.titleColor),
       ),
       body: IndexedStack(
         index: _selectedIndex,

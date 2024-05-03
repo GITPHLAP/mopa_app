@@ -20,7 +20,6 @@ class _AfterWidgetState extends ConsumerState<AfterWidget> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(afterPageTitle),
-        centerTitle: true,
       ),
       body: Column(
         children: [

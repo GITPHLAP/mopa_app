@@ -20,7 +20,6 @@ class _BeforeWidgetState extends ConsumerState<BeforeWidget> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(beforePageTitle),
-        centerTitle: true,
       ),
       body: Column(
         children: [

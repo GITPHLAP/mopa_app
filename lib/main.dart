@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mopa_app/bottom_navigation_menu.dart';
+import 'package:mopa_app/theme/theme.dart';
 
 void main() {
   runApp(const ProviderScope(child: MopaApp()));
@@ -14,10 +15,7 @@ class MopaApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
-        useMaterial3: true,
-      ),
+      theme: primaryTheme,
       home: const BottomNavigationMenu(),
     );
   }

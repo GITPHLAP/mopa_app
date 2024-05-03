@@ -28,7 +28,6 @@ class _OptionsWidgetState extends ConsumerState<OptionsWidget> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(optionPageTitle),
-        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(defaultPadding),
