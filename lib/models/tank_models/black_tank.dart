@@ -1,7 +1,6 @@
+import 'package:mopa_app/enums/positions.dart';
+import 'package:mopa_app/enums/tank_types.dart';
 import 'package:mopa_app/models/tank_models/tank.dart';
-
-import '../../enums/positions.dart';
-import '../../enums/tank_types.dart';
 
 class BlackTank implements Tank {
   @override

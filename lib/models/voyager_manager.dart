@@ -1,9 +1,8 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:mopa_app/enums/tank_types.dart';
 import 'package:mopa_app/models/reading.dart';
 import 'package:mopa_app/models/voyager.dart';
-
-import '../enums/tank_types.dart';
 
 part 'voyager_manager.freezed.dart';
 

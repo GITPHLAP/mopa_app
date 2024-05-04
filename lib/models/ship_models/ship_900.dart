@@ -1,11 +1,11 @@
+import 'package:mopa_app/enums/positions.dart';
+import 'package:mopa_app/models/ship_models/ship.dart';
 import 'package:mopa_app/models/tank_models/black_tank.dart';
 import 'package:mopa_app/models/tank_models/fuel_tank.dart';
 import 'package:mopa_app/models/tank_models/grey_tank.dart';
-import 'package:mopa_app/models/ship_models/ship.dart';
 import 'package:mopa_app/models/tank_models/tank.dart';
 import 'package:mopa_app/models/tank_models/water_tank.dart';
 
-import '../../enums/positions.dart';
 
 class Ship900 implements Ship{
   final List<Tank> _tanks = [];
