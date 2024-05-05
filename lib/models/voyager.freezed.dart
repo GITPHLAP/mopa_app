@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Voyager {
+  int? get id => throw _privateConstructorUsedError;
   int get peopleCount => throw _privateConstructorUsedError;
   Ship get ship => throw _privateConstructorUsedError;
   IList<Reading> get beforeReadings => throw _privateConstructorUsedError;
@@ -31,7 +32,8 @@ abstract class $VoyagerCopyWith<$Res> {
       _$VoyagerCopyWithImpl<$Res, Voyager>;
   @useResult
   $Res call(
-      {int peopleCount,
+      {int? id,
+      int peopleCount,
       Ship ship,
       IList<Reading> beforeReadings,
       IList<Reading> afterReadings});
@@ -50,12 +52,17 @@ class _$VoyagerCopyWithImpl<$Res, $Val extends Voyager>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? peopleCount = null,
     Object? ship = null,
     Object? beforeReadings = null,
     Object? afterReadings = null,
   }) {
     return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       peopleCount: null == peopleCount
           ? _value.peopleCount
           : peopleCount // ignore: cast_nullable_to_non_nullable
@@ -84,7 +91,8 @@ abstract class _$$VoyagerImplCopyWith<$Res> implements $VoyagerCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {int peopleCount,
+      {int? id,
+      int peopleCount,
       Ship ship,
       IList<Reading> beforeReadings,
       IList<Reading> afterReadings});
@@ -101,12 +109,17 @@ class __$$VoyagerImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? peopleCount = null,
     Object? ship = null,
     Object? beforeReadings = null,
     Object? afterReadings = null,
   }) {
     return _then(_$VoyagerImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       peopleCount: null == peopleCount
           ? _value.peopleCount
           : peopleCount // ignore: cast_nullable_to_non_nullable
@@ -129,13 +142,17 @@ class __$$VoyagerImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$VoyagerImpl implements _Voyager {
+class _$VoyagerImpl extends _Voyager {
   const _$VoyagerImpl(
-      {required this.peopleCount,
+      {this.id,
+      required this.peopleCount,
       required this.ship,
       this.beforeReadings = const IList.empty(),
-      this.afterReadings = const IList.empty()});
+      this.afterReadings = const IList.empty()})
+      : super._();
 
+  @override
+  final int? id;
   @override
   final int peopleCount;
   @override
@@ -149,7 +166,7 @@ class _$VoyagerImpl implements _Voyager {
 
   @override
   String toString() {
-    return 'Voyager(peopleCount: $peopleCount, ship: $ship, beforeReadings: $beforeReadings, afterReadings: $afterReadings)';
+    return 'Voyager(id: $id, peopleCount: $peopleCount, ship: $ship, beforeReadings: $beforeReadings, afterReadings: $afterReadings)';
   }
 
   @override
@@ -157,6 +174,7 @@ class _$VoyagerImpl implements _Voyager {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$VoyagerImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.peopleCount, peopleCount) ||
                 other.peopleCount == peopleCount) &&
             (identical(other.ship, ship) || other.ship == ship) &&
@@ -169,6 +187,7 @@ class _$VoyagerImpl implements _Voyager {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      id,
       peopleCount,
       ship,
       const DeepCollectionEquality().hash(beforeReadings),
@@ -181,13 +200,17 @@ class _$VoyagerImpl implements _Voyager {
       __$$VoyagerImplCopyWithImpl<_$VoyagerImpl>(this, _$identity);
 }
 
-abstract class _Voyager implements Voyager {
+abstract class _Voyager extends Voyager {
   const factory _Voyager(
-      {required final int peopleCount,
+      {final int? id,
+      required final int peopleCount,
       required final Ship ship,
       final IList<Reading> beforeReadings,
       final IList<Reading> afterReadings}) = _$VoyagerImpl;
+  const _Voyager._() : super._();
 
+  @override
+  int? get id;
   @override
   int get peopleCount;
   @override

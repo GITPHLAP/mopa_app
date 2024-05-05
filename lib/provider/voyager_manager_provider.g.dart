@@ -49,7 +49,7 @@ final getVoyagerProvider = AutoDisposeProvider<Voyager>.internal(
 
 typedef GetVoyagerRef = AutoDisposeProviderRef<Voyager>;
 String _$voyagerManagerNotifierHash() =>
-    r'87639258c2b2140dda01d37428feee6e0678ce06';
+    r'd402b76654c15ae8a365de434df9159c43f06962';
 
 /// See also [VoyagerManagerNotifier].
 @ProviderFor(VoyagerManagerNotifier)
