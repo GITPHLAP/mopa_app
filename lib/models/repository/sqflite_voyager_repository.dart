@@ -11,6 +11,8 @@ class SqfliteVoyagerRepository implements VoyagerRepository {
 
     if (voyagerdb != null) {
       voyager = voyagerdb.toDTOVoyager();
+      // TODO: Fetch Before- and after readings
+      
     }
     return voyager;
   }
