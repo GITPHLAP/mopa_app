@@ -18,8 +18,8 @@ class SqfliteVoyagerRepository implements VoyagerRepository {
   }
 
   @override
-  Future upsertVoyager(Voyager voyager) {
-    // TODO: implement upsertVoyager
-    throw UnimplementedError();
+  Future upsertVoyager(Voyager voyager) async {
+    VoyagerDB? voyagerdb = VoyagerDB.fromDTOVoyager(voyager);
+    return await SqfliteService.upsertVoyager(voyagerdb);
   }
 }

@@ -8,7 +8,7 @@ class SqfliteService {
   static Future<VoyagerDB?> getLastUnfinishedVoyager() async {
     VoyagerDB? voyager;
     Database db = await _store.database;
-    List<Map> results = await db.query("voyager", where: "is_ended = false");
+    List<Map<String, Object?>> results = await db.query("voyager", where: "is_ended = false");
     if (results.isNotEmpty) {
       voyager = VoyagerDB.fromMap(results[0]);
     }
