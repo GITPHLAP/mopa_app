@@ -20,7 +20,7 @@ class VoyagerDB {
 
   static VoyagerDB fromMap(Map map) {
     VoyagerDB voyager = VoyagerDB(
-        map['id'], map['people_count'], map['ship_type'], map['is_ended']);
+        map['id'], map['people_count'], map['ship_type'], map['is_ended'] == 1);
     return voyager;
   }
 
