@@ -5,6 +5,6 @@ part 'reading.freezed.dart';
 
 @freezed
 class Reading with _$Reading {
-  const factory Reading({required Tank tank, required double value}) = _Reading;
+  const factory Reading({int? id, required Tank tank, required double value}) = _Reading;
 
 }

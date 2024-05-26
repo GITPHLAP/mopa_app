@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Reading {
+  int? get id => throw _privateConstructorUsedError;
   Tank get tank => throw _privateConstructorUsedError;
   double get value => throw _privateConstructorUsedError;
 
@@ -28,7 +29,7 @@ abstract class $ReadingCopyWith<$Res> {
   factory $ReadingCopyWith(Reading value, $Res Function(Reading) then) =
       _$ReadingCopyWithImpl<$Res, Reading>;
   @useResult
-  $Res call({Tank tank, double value});
+  $Res call({int? id, Tank tank, double value});
 }
 
 /// @nodoc
@@ -44,10 +45,15 @@ class _$ReadingCopyWithImpl<$Res, $Val extends Reading>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? tank = null,
     Object? value = null,
   }) {
     return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       tank: null == tank
           ? _value.tank
           : tank // ignore: cast_nullable_to_non_nullable
@@ -67,7 +73,7 @@ abstract class _$$ReadingImplCopyWith<$Res> implements $ReadingCopyWith<$Res> {
       __$$ReadingImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Tank tank, double value});
+  $Res call({int? id, Tank tank, double value});
 }
 
 /// @nodoc
@@ -81,10 +87,15 @@ class __$$ReadingImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? tank = null,
     Object? value = null,
   }) {
     return _then(_$ReadingImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       tank: null == tank
           ? _value.tank
           : tank // ignore: cast_nullable_to_non_nullable
@@ -100,8 +111,10 @@ class __$$ReadingImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ReadingImpl implements _Reading {
-  const _$ReadingImpl({required this.tank, required this.value});
+  const _$ReadingImpl({this.id, required this.tank, required this.value});
 
+  @override
+  final int? id;
   @override
   final Tank tank;
   @override
@@ -109,7 +122,7 @@ class _$ReadingImpl implements _Reading {
 
   @override
   String toString() {
-    return 'Reading(tank: $tank, value: $value)';
+    return 'Reading(id: $id, tank: $tank, value: $value)';
   }
 
   @override
@@ -117,12 +130,13 @@ class _$ReadingImpl implements _Reading {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ReadingImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.tank, tank) || other.tank == tank) &&
             (identical(other.value, value) || other.value == value));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, tank, value);
+  int get hashCode => Object.hash(runtimeType, id, tank, value);
 
   @JsonKey(ignore: true)
   @override
@@ -133,8 +147,12 @@ class _$ReadingImpl implements _Reading {
 
 abstract class _Reading implements Reading {
   const factory _Reading(
-      {required final Tank tank, required final double value}) = _$ReadingImpl;
+      {final int? id,
+      required final Tank tank,
+      required final double value}) = _$ReadingImpl;
 
+  @override
+  int? get id;
   @override
   Tank get tank;
   @override
