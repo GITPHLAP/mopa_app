@@ -31,16 +31,16 @@ class SqfliteStore {
     // SQL statement to create voyager
     await db.execute('''
       CREATE TABLE voyager (
-        id INTEGER PRIMARY KEY,
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
         people_count INTEGER,
-        ship TEXT,
+        ship_type TEXT,
         is_ended BOOLEAN
       )''');
 
     // Create Before readings table
     await db.execute('''
       CREATE TABLE before_readings (
-        id INTEGER PRIMARY KEY,
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
         voyager_id INTEGER NOT NULL,    
         tank_type TEXT NOT NULL,
         tank_position TEXT NOT NULL,
@@ -51,7 +51,7 @@ class SqfliteStore {
     // Create After readings table
     await db.execute('''
       CREATE TABLE after_readings (
-        id INTEGER PRIMARY KEY,
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
         voyager_id INTEGER NOT NULL,    
         tank_type TEXT NOT NULL,
         tank_position TEXT NOT NULL,
