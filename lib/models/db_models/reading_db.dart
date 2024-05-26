@@ -16,4 +16,8 @@ class ReadingDB {
         tank: Tank.getShipTankBy(voyagerShip, tankType, tankPosition),
         value: value);
   }
+
+  static ReadingDB fromDTOVoyager(Reading reading) {
+    return ReadingDB(reading.id, reading.tank.position.toString(), reading.tank.type.toString(), reading.value);
+  }
 }

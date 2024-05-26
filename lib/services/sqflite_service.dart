@@ -9,7 +9,8 @@ class SqfliteService {
   static Future<VoyagerDB?> getLastUnfinishedVoyager() async {
     VoyagerDB? voyager;
     Database db = await _store.database;
-    List<Map<String, Object?>> results = await db.query("voyager", where: "is_ended = false");
+    List<Map<String, Object?>> results =
+        await db.query("voyager", where: "is_ended = false");
     if (results.isNotEmpty) {
       voyager = VoyagerDB.fromMap(results[0]);
     }
@@ -22,7 +23,8 @@ class SqfliteService {
         conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
-  static Future<List<ReadingDB>> getReadingsForVoyager(int voyagerId, bool isAfterReading) async {
+  static Future<List<ReadingDB>> getReadingsForVoyager(
+      int voyagerId, bool isAfterReading) async {
     Database db = await _store.database;
 
     List<Map<String, Object?>> results;
@@ -37,7 +39,7 @@ class SqfliteService {
       return [
         for (final {
               'id': id as int,
-              'tank_type':tankType as String,
+              'tank_type': tankType as String,
               'tank_position': tankPosition as String,
               'value': value as double,
             } in results)
@@ -47,4 +49,10 @@ class SqfliteService {
     return [];
   }
 
+  static Future<int> upsertReading(ReadingDB reading, bool isAfterReading) async {
+    Database db = await _store.database;
+    if (isAfterReading) {
+      return await db.insert("voyager", reading.toMap(),conflictAlgorithm: ConflictAlgorithm.replace);
+    }
+  }
 }
