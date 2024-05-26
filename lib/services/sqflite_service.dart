@@ -14,4 +14,11 @@ class SqfliteService {
     }
     return voyager;
   }
+
+  static Future<int> upsertVoyager(VoyagerDB voyager) async {
+    Database db = await _store.database;
+    return await db.insert("voyager", voyager.toMap(),
+        conflictAlgorithm: ConflictAlgorithm.replace);
+  }
+
 }
