@@ -44,7 +44,7 @@ class SqfliteStore {
         voyager_id INTEGER NOT NULL,    
         tank_type TEXT NOT NULL,
         tank_position TEXT NOT NULL,
-        value numeric NOT NULL,     
+        value REAL NOT NULL,     
         FOREIGN KEY (voyager_id) REFERENCES voyager (id) ON DELETE CASCADE
       )''');
 
@@ -55,7 +55,7 @@ class SqfliteStore {
         voyager_id INTEGER NOT NULL,    
         tank_type TEXT NOT NULL,
         tank_position TEXT NOT NULL,
-        value numeric NOT NULL,     
+        value REAL NOT NULL,     
         FOREIGN KEY (voyager_id) REFERENCES voyager (id) ON DELETE CASCADE
       )''');
   }

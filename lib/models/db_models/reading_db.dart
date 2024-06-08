@@ -20,4 +20,14 @@ class ReadingDB {
   static ReadingDB fromDTOVoyager(Reading reading) {
     return ReadingDB(reading.id, reading.tank.position.toString(), reading.tank.type.toString(), reading.value);
   }
+
+    Map<String, dynamic> toMap(int voyagerId) {
+    return {
+      'id': id,
+      'voyager_id': voyagerId,
+      'tank_type': tankType,
+      'tank_position': tankPosition,
+      'value': value
+    };
+  }
 }

@@ -49,10 +49,19 @@ class SqfliteService {
     return [];
   }
 
-  static Future<int> upsertReading(ReadingDB reading, bool isAfterReading) async {
-    Database db = await _store.database;
+  static Future upsertReading(Batch batch, ReadingDB reading, bool isAfterReading, int voyagerId) async {
     if (isAfterReading) {
-      return await db.insert("voyager", reading.toMap(),conflictAlgorithm: ConflictAlgorithm.replace);
+      return batch.insert("after_readings", reading.toMap(voyagerId),conflictAlgorithm: ConflictAlgorithm.replace);
     }
+    return batch.insert("before_readings", reading.toMap(voyagerId),conflictAlgorithm: ConflictAlgorithm.replace);
+  }
+  static Future batchUpsertReadings(List<ReadingDB> readings, bool isAfterReading, int voyagerId) async {
+    Database db = await _store.database;
+    Batch batch = db.batch();
+
+    for (var reading in readings) {
+      upsertReading(batch, reading, isAfterReading, voyagerId);
+    }
+    return await batch.commit(noResult: true);
   }
 }

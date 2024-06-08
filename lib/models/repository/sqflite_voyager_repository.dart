@@ -1,4 +1,5 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
+import 'package:mopa_app/models/db_models/reading_db.dart';
 import 'package:mopa_app/models/db_models/voyager_db.dart';
 import 'package:mopa_app/models/reading.dart';
 import 'package:mopa_app/models/repository/voyager_repository.dart';
@@ -25,7 +26,7 @@ class SqfliteVoyagerRepository implements VoyagerRepository {
         beforeReadings.add(r.toDTOReading(voyager.ship));
       }
       voyager = voyager.copyWith(
-          afterReadings: beforeReadings.toIList(),
+          afterReadings: afterReadings.toIList(),
           beforeReadings: beforeReadings.toIList());
     }
     return voyager;
@@ -34,6 +35,13 @@ class SqfliteVoyagerRepository implements VoyagerRepository {
   @override
   Future upsertVoyager(Voyager voyager) async {
     VoyagerDB? voyagerdb = VoyagerDB.fromDTOVoyager(voyager);
-    return await SqfliteService.upsertVoyager(voyagerdb);
+    int voyagerId = await SqfliteService.upsertVoyager(voyagerdb);
+
+    // Upsert readings
+    List<ReadingDB> afterReadingDB = voyager.afterReadings.map<ReadingDB>((r) => ReadingDB.fromDTOVoyager(r)).toList();
+    List<ReadingDB> beforeReadingDB = voyager.beforeReadings.map<ReadingDB>((r) => ReadingDB.fromDTOVoyager(r)).toList();
+    await SqfliteService.batchUpsertReadings(afterReadingDB, true, voyagerId);
+    await SqfliteService.batchUpsertReadings(beforeReadingDB, false, voyagerId);
+    return; 
   }
 }
