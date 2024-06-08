@@ -34,7 +34,7 @@ class SqfliteStore {
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         people_count INTEGER,
         ship_type TEXT,
-        is_ended BOOLEAN
+        is_ended INTEGER
       )''');
 
     // Create Before readings table

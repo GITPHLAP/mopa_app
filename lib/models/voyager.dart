@@ -19,7 +19,7 @@ class Voyager with _$Voyager {
 
   /// isEnded Check if before readings and after readings count is equal to ship tanks count
   /// And the value is above 1 and less or equal to limit
-  bool isEnded() {
+  int isEnded() {
     // Counts check
     int tankCount = ship.tanks.length;
 
@@ -31,6 +31,6 @@ class Voyager with _$Voyager {
     bool isAfterReadingsValid = afterReadings
         .any((element) => element.value.isInRange(1, element.tank.limit + 1));
 
-    return isCountsValid && isBeforeReadingsValid && isAfterReadingsValid;
+    return (isCountsValid && isBeforeReadingsValid && isAfterReadingsValid) ? 1 : 0;;
   }
 }
