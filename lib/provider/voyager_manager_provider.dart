@@ -41,6 +41,7 @@ class VoyagerManagerNotifier extends _$VoyagerManagerNotifier {
 
   void changeAmountOfPersons(int personCount) {
     state = state.copyWith.voyager(peopleCount: personCount);
+    ref.watch(voyagerRepositoryProvider).upsertVoyager(state.voyager);
   }
 
   void changeShip(ShipTypes shipType) {

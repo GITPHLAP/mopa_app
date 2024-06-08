@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mopa_app/enums/ship_types.dart';
 import 'package:mopa_app/provider/voyager_manager_provider.dart';
+import 'package:mopa_app/provider/voyager_repository_provider.dart';
 import 'package:mopa_app/utility/values.dart';
 
 class OptionsWidget extends ConsumerStatefulWidget {
@@ -68,6 +69,10 @@ class _OptionsWidgetState extends ConsumerState<OptionsWidget> {
                   ),
                 ],
               ),
+              TextButton(
+                onPressed: onTestButton, 
+                child: const Text("Test"),
+                ),
             ],
           ),
         ),
@@ -83,5 +88,16 @@ class _OptionsWidgetState extends ConsumerState<OptionsWidget> {
     ref
         .read(voyagerManagerNotifierProvider.notifier)
         .changeAmountOfPersons(int.parse(_personAmountController.text));
+  }
+    void onTestButton() {
+        // Try fetching voyager from local storage
+    ref
+        .watch(voyagerRepositoryProvider)
+        .getLastUnfinishedVoyager()
+        .then((value) {
+      if (value != null) {
+        print(value);
+      }
+    }).catchError((e) => print(e));
   }
 }
