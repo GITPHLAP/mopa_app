@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mopa_app/bottom_navigation_menu.dart';
+import 'package:mopa_app/components/error_widget/custom_error_widget.dart';
+import 'package:mopa_app/components/spinner/engine_spinner.dart';
 import 'package:mopa_app/provider/voyager_manager_provider.dart';
 import 'package:mopa_app/theme/theme.dart';
 
@@ -35,8 +37,15 @@ class _EagerInitialization extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     // Eagerly initialize providers by watching them.
     // By using "watch", the provider will stay alive and not be disposed.
-    ref.watch(voyagerManagerNotifierProvider);
-    return child;
+    final asyncVMProvider = ref.watch(voyagerManagerNotifierProvider);
+
+    return asyncVMProvider.when(data: (data) {
+      return child;
+    }, error: (error, stackTrace) {
+      return const CustomErrorWidget();
+    }, loading: () {
+      return const EngineSpinnerWidget();
+    });
   }
 }
 
