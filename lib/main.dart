@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mopa_app/bottom_navigation_menu.dart';
+import 'package:mopa_app/provider/voyager_manager_provider.dart';
 import 'package:mopa_app/theme/theme.dart';
 
 void main() async {
@@ -16,11 +17,26 @@ class MopaApp extends StatelessWidget {
   // This widget is the root of the application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: primaryTheme,
-      home: const BottomNavigationMenu(),
+    return _EagerInitialization(
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: primaryTheme,
+        home: const BottomNavigationMenu(),
+      ),
     );
+  }
+}
+
+class _EagerInitialization extends ConsumerWidget {
+  const _EagerInitialization({required this.child});
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    // Eagerly initialize providers by watching them.
+    // By using "watch", the provider will stay alive and not be disposed.
+    ref.watch(voyagerManagerNotifierProvider);
+    return child;
   }
 }
 
