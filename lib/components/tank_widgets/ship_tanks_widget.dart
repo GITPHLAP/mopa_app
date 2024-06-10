@@ -8,9 +8,13 @@ import 'package:mopa_app/utility/values.dart';
 
 /// Widget to display all tanks for the seleted ship
 class ShipTanksWidget extends ConsumerWidget {
-  const ShipTanksWidget({super.key, required this.onReadingChanged});
+  const ShipTanksWidget(
+      {super.key,
+      required this.onReadingChanged,
+      required this.isAfterReading});
 
   final Function(String val, Tank tank) onReadingChanged;
+  final bool isAfterReading;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -24,6 +28,7 @@ class ShipTanksWidget extends ConsumerWidget {
                 .where((element) => element.type == TankTypes.water)
                 .toList(),
             onChanged: onReadingChanged,
+            isAfterReading: isAfterReading,
           ),
           const SizedBox(width: defaultSpace),
           TankList(
@@ -33,6 +38,7 @@ class ShipTanksWidget extends ConsumerWidget {
                     element.type == TankTypes.grey)
                 .toList(),
             onChanged: onReadingChanged,
+            isAfterReading: isAfterReading,
           ),
           const SizedBox(width: defaultSpace),
           TankList(
@@ -40,6 +46,7 @@ class ShipTanksWidget extends ConsumerWidget {
                 .where((element) => element.type == TankTypes.fuel)
                 .toList(),
             onChanged: onReadingChanged,
+            isAfterReading: isAfterReading,
           ),
           const SizedBox(width: defaultSpace),
         ],

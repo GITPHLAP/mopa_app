@@ -6,6 +6,7 @@ import 'package:mopa_app/models/reading.dart';
 import 'package:mopa_app/models/ship_models/ship.dart';
 import 'package:mopa_app/models/ship_models/ship_800.dart';
 import 'package:mopa_app/models/ship_models/ship_900.dart';
+import 'package:mopa_app/models/tank_models/tank.dart';
 import 'package:mopa_app/models/voyager.dart';
 import 'package:mopa_app/models/voyager_manager.dart';
 import 'package:mopa_app/provider/voyager_repository_provider.dart';
@@ -31,7 +32,7 @@ class VoyagerManagerNotifier extends _$VoyagerManagerNotifier {
   void changeAmountOfPersons(int personCount) {
     update((data) => data.copyWith.voyager(peopleCount: personCount)).then(
         (value) =>
-    ref.watch(voyagerRepositoryProvider).upsertVoyager(value.voyager));
+            ref.watch(voyagerRepositoryProvider).upsertVoyager(value.voyager));
   }
 
   Future<void> changeShip(ShipTypes shipType) async {
@@ -87,7 +88,7 @@ class VoyagerManagerNotifier extends _$VoyagerManagerNotifier {
 @riverpod
 Ship getShip(GetShipRef ref) {
   final asyncVMProvicer = ref.watch(voyagerManagerNotifierProvider);
-VoyagerManager voyagerManager = asyncVMProvicer.requireValue;
+  VoyagerManager voyagerManager = asyncVMProvicer.requireValue;
 
   return voyagerManager.voyager.ship;
 }
@@ -95,7 +96,7 @@ VoyagerManager voyagerManager = asyncVMProvicer.requireValue;
 @riverpod
 ShipTypes getShipType(GetShipTypeRef ref) {
   final asyncVMProvicer = ref.watch(voyagerManagerNotifierProvider);
-VoyagerManager voyagerManager = asyncVMProvicer.value!;
+  VoyagerManager voyagerManager = asyncVMProvicer.value!;
 
   if (voyagerManager.voyager.ship is Ship800) {
     return ShipTypes.class800;
@@ -106,7 +107,32 @@ VoyagerManager voyagerManager = asyncVMProvicer.value!;
 @riverpod
 Voyager getVoyager(GetVoyagerRef ref) {
   final asyncVMProvicer = ref.watch(voyagerManagerNotifierProvider);
-VoyagerManager voyagerManager = asyncVMProvicer.value!;
+  VoyagerManager voyagerManager = asyncVMProvicer.value!;
 
   return voyagerManager.voyager;
+}
+
+@riverpod
+String getReadingValueFromTankAndType(
+    GetReadingValueFromTankAndTypeRef ref, bool isAfterReading, Tank tank) {
+  final asyncVMProvicer = ref.watch(voyagerManagerNotifierProvider);
+  VoyagerManager voyagerManager = asyncVMProvicer.value!;
+
+  if (isAfterReading) {
+    String temp = "";
+    int indexOfElement = voyagerManager.voyager.afterReadings
+        .indexWhere((element) => element.tank == tank);
+    if (indexOfElement == -1) {
+      indexOfElement = voyagerManager.voyager.beforeReadings
+          .indexWhere((element) => element.tank == tank);
+    }
+    if (indexOfElement != -1) {
+      print("Something");
+      temp =
+          voyagerManager.voyager.afterReadings[indexOfElement].value.toString();
+    }
+    return temp;
+  }
+  // return voyagerManager.voyager.beforeReadings.firstWhere((r) => r.tank == tank, orElse: () => Reading(tank: tank, value: 0)).value;
+  return "";
 }

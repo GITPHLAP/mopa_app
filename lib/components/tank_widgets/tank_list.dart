@@ -6,11 +6,13 @@ class TankList extends StatefulWidget {
   const TankList(
     this.tanks, {
     required this.onChanged,
+    required this.isAfterReading,
     super.key,
   });
 
   final List<Tank> tanks;
   final Function(String val, Tank tank) onChanged;
+  final bool isAfterReading;
   @override
   State<TankList> createState() => _TankListState();
 }
@@ -21,7 +23,11 @@ class _TankListState extends State<TankList> {
     return Flexible(
       child: Column(
         children: widget.tanks.map((tank) {
-          return TankTextFieldWidget(onChanged: widget.onChanged, tank: tank);
+          return TankTextFieldWidget(
+            onChanged: widget.onChanged,
+            tank: tank,
+            isAfterReading: widget.isAfterReading,
+          );
         }).toList(),
       ),
     );

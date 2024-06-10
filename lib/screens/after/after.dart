@@ -23,7 +23,10 @@ class _AfterWidgetState extends ConsumerState<AfterWidget> {
       ),
       body: Column(
         children: [
-          ShipTanksWidget(onReadingChanged: onReadingChanged),
+          ShipTanksWidget(
+            onReadingChanged: onReadingChanged,
+            isAfterReading: true,
+          ),
           // Calculation part
           const Expanded(
             child: AfterCalculationWidget(),
