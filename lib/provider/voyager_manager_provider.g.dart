@@ -49,7 +49,7 @@ final getVoyagerProvider = AutoDisposeProvider<Voyager>.internal(
 
 typedef GetVoyagerRef = AutoDisposeProviderRef<Voyager>;
 String _$getReadingValueFromTankAndTypeHash() =>
-    r'60c183985c801a8a4a636c92a67d4ae5b3c41dd3';
+    r'd42969b7ad5c730b36032c053ab58c6cb91f6ada';
 
 /// Copied from Dart SDK
 class _SystemHash {

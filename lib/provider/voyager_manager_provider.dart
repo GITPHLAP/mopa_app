@@ -119,20 +119,15 @@ String getReadingValueFromTankAndType(
   VoyagerManager voyagerManager = asyncVMProvicer.value!;
 
   if (isAfterReading) {
-    String temp = "";
     int indexOfElement = voyagerManager.voyager.afterReadings
         .indexWhere((element) => element.tank == tank);
-    if (indexOfElement == -1) {
-      indexOfElement = voyagerManager.voyager.beforeReadings
-          .indexWhere((element) => element.tank == tank);
-    }
-    if (indexOfElement != -1) {
-      print("Something");
-      temp =
-          voyagerManager.voyager.afterReadings[indexOfElement].value.toString();
-    }
-    return temp;
+    return indexOfElement == -1
+        ? ""
+        : voyagerManager.voyager.afterReadings[indexOfElement].value.toString();
   }
-  // return voyagerManager.voyager.beforeReadings.firstWhere((r) => r.tank == tank, orElse: () => Reading(tank: tank, value: 0)).value;
-  return "";
+  int indexOfElement = voyagerManager.voyager.beforeReadings
+      .indexWhere((element) => element.tank == tank);
+  return indexOfElement == -1
+      ? ""
+      : voyagerManager.voyager.beforeReadings[indexOfElement].value.toString();
 }
