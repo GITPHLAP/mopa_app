@@ -16,35 +16,25 @@ part 'voyager_manager_provider.g.dart';
 @riverpod
 class VoyagerManagerNotifier extends _$VoyagerManagerNotifier {
   @override
-  VoyagerManager build() {
-    Future.delayed(const Duration(seconds: 2), _initialVoyager);
-    return VoyagerManager(Voyager(peopleCount: 12, ship: Ship900()));
+  FutureOr<VoyagerManager> build() async {
+    var voyager = await _initialVoyager();
+    return VoyagerManager(voyager);
   }
 
-  Future<void> _initialVoyager() async {
+  Future<Voyager> _initialVoyager() async {
     // Try fetching voyager from local storage
-    ref
+    return await ref
         .watch(voyagerRepositoryProvider)
-        .getLastUnfinishedVoyager()
-        .then((value) {
-      if (value != null) {
-        state = state.copyWith.voyager(
-          id: value.id,
-          peopleCount: value.peopleCount,
-          ship: value.ship,
-          beforeReadings: value.beforeReadings,
-          afterReadings: value.afterReadings,
-        );
-      }
-    }).catchError((e) => print(e));
+        .getLastUnfinishedVoyager();
   }
 
   void changeAmountOfPersons(int personCount) {
-    state = state.copyWith.voyager(peopleCount: personCount);
-    ref.watch(voyagerRepositoryProvider).upsertVoyager(state.voyager);
+    update((data) => data.copyWith.voyager(peopleCount: personCount)).then(
+        (value) =>
+    ref.watch(voyagerRepositoryProvider).upsertVoyager(value.voyager));
   }
 
-  void changeShip(ShipTypes shipType) {
+  Future<void> changeShip(ShipTypes shipType) async {
     Ship ship;
     switch (shipType) {
       case ShipTypes.class900:
@@ -58,54 +48,55 @@ class VoyagerManagerNotifier extends _$VoyagerManagerNotifier {
         break;
     }
     // When changing ship its need to reset readings, because tanks is not equal.
-    state = state.copyWith.voyager(
+    update((data) => data.copyWith.voyager(
         ship: ship,
         afterReadings: const IList.empty(),
-        beforeReadings: const IList.empty());
+        beforeReadings: const IList.empty()));
   }
 
   void addBeforeReading(Reading reading) {
-    int indexOfElement = state.voyager.beforeReadings
+    int indexOfElement = state.value!.voyager.beforeReadings
         .indexWhere((element) => element.tank == reading.tank);
     if (indexOfElement == -1) {
-      state = state.copyWith
-          .voyager(beforeReadings: state.voyager.beforeReadings.add(reading));
+      update((data) => data.copyWith
+          .voyager(beforeReadings: data.voyager.beforeReadings.add(reading)));
       return;
     }
-    state = state.copyWith.voyager(
+    update((data) => data.copyWith.voyager(
         beforeReadings:
-            state.voyager.beforeReadings.replace(indexOfElement, reading));
+            data.voyager.beforeReadings.replace(indexOfElement, reading)));
 
     return;
   }
 
   void addAfterReading(Reading reading) {
-    int indexOfElement = state.voyager.afterReadings
+    int indexOfElement = state.value!.voyager.afterReadings
         .indexWhere((element) => element.tank == reading.tank);
     if (indexOfElement == -1) {
-      state = state.copyWith
-          .voyager(afterReadings: state.voyager.afterReadings.add(reading));
+      update((data) => data.copyWith
+          .voyager(afterReadings: data.voyager.afterReadings.add(reading)));
       return;
     }
-    state = state.copyWith.voyager(
+    update((data) => data.copyWith.voyager(
         afterReadings:
-            state.voyager.afterReadings.replace(indexOfElement, reading));
+            data.voyager.afterReadings.replace(indexOfElement, reading)));
     return;
   }
 }
 
 @riverpod
-Ship getShip(ref) {
-  final VoyagerManager voyagerManager =
-      ref.watch(voyagerManagerNotifierProvider);
+Ship getShip(GetShipRef ref) {
+  final asyncVMProvicer = ref.watch(voyagerManagerNotifierProvider);
+VoyagerManager voyagerManager = asyncVMProvicer.requireValue;
 
   return voyagerManager.voyager.ship;
 }
 
 @riverpod
-ShipTypes getShipType(ref) {
-  final VoyagerManager voyagerManager =
-      ref.watch(voyagerManagerNotifierProvider);
+ShipTypes getShipType(GetShipTypeRef ref) {
+  final asyncVMProvicer = ref.watch(voyagerManagerNotifierProvider);
+VoyagerManager voyagerManager = asyncVMProvicer.value!;
+
   if (voyagerManager.voyager.ship is Ship800) {
     return ShipTypes.class800;
   }
@@ -113,8 +104,9 @@ ShipTypes getShipType(ref) {
 }
 
 @riverpod
-Voyager getVoyager(ref) {
-  final VoyagerManager voyagerManager =
-      ref.watch(voyagerManagerNotifierProvider);
+Voyager getVoyager(GetVoyagerRef ref) {
+  final asyncVMProvicer = ref.watch(voyagerManagerNotifierProvider);
+VoyagerManager voyagerManager = asyncVMProvicer.value!;
+
   return voyagerManager.voyager;
 }

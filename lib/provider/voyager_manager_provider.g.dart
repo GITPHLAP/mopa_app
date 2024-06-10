@@ -6,7 +6,7 @@ part of 'voyager_manager_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getShipHash() => r'd0b609f4f8fac18884808b84c113ca4d6642556a';
+String _$getShipHash() => r'45d0464eec1c8a61fe91a43db3e530c4fb1d7229';
 
 /// See also [getShip].
 @ProviderFor(getShip)
@@ -20,7 +20,7 @@ final getShipProvider = AutoDisposeProvider<Ship>.internal(
 );
 
 typedef GetShipRef = AutoDisposeProviderRef<Ship>;
-String _$getShipTypeHash() => r'4a7ca6db509413787683192e26cb1c60d252fb62';
+String _$getShipTypeHash() => r'0da25ec7a4815d38b705c2e190a5fd2bbef8d502';
 
 /// See also [getShipType].
 @ProviderFor(getShipType)
@@ -34,7 +34,7 @@ final getShipTypeProvider = AutoDisposeProvider<ShipTypes>.internal(
 );
 
 typedef GetShipTypeRef = AutoDisposeProviderRef<ShipTypes>;
-String _$getVoyagerHash() => r'e26161448d447f58f0a57a9d720ffc63a3a3bbd1';
+String _$getVoyagerHash() => r'7429bd890c36be4d6b7dd12950b087cc6fc14ca7';
 
 /// See also [getVoyager].
 @ProviderFor(getVoyager)
@@ -49,11 +49,11 @@ final getVoyagerProvider = AutoDisposeProvider<Voyager>.internal(
 
 typedef GetVoyagerRef = AutoDisposeProviderRef<Voyager>;
 String _$voyagerManagerNotifierHash() =>
-    r'7124efa45c0ee118d931673c98ebbe4bd8185643';
+    r'64ca7f49f50497bb1d6995bc23d8034ff1b8c2f7';
 
 /// See also [VoyagerManagerNotifier].
 @ProviderFor(VoyagerManagerNotifier)
-final voyagerManagerNotifierProvider = AutoDisposeNotifierProvider<
+final voyagerManagerNotifierProvider = AutoDisposeAsyncNotifierProvider<
     VoyagerManagerNotifier, VoyagerManager>.internal(
   VoyagerManagerNotifier.new,
   name: r'voyagerManagerNotifierProvider',
@@ -64,6 +64,6 @@ final voyagerManagerNotifierProvider = AutoDisposeNotifierProvider<
   allTransitiveDependencies: null,
 );
 
-typedef _$VoyagerManagerNotifier = AutoDisposeNotifier<VoyagerManager>;
+typedef _$VoyagerManagerNotifier = AutoDisposeAsyncNotifier<VoyagerManager>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

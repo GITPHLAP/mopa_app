@@ -3,13 +3,14 @@ import 'package:mopa_app/models/db_models/reading_db.dart';
 import 'package:mopa_app/models/db_models/voyager_db.dart';
 import 'package:mopa_app/models/reading.dart';
 import 'package:mopa_app/models/repository/voyager_repository.dart';
+import 'package:mopa_app/models/ship_models/ship_900.dart';
 import 'package:mopa_app/models/voyager.dart';
 import 'package:mopa_app/services/sqflite_service.dart';
 
 class SqfliteVoyagerRepository implements VoyagerRepository {
   @override
-  Future<Voyager?> getLastUnfinishedVoyager() async {
-    Voyager? voyager;
+  Future<Voyager> getLastUnfinishedVoyager() async {
+    Voyager voyager;
     VoyagerDB? voyagerdb = await SqfliteService.getLastUnfinishedVoyager();
 
     if (voyagerdb != null) {
@@ -28,6 +29,8 @@ class SqfliteVoyagerRepository implements VoyagerRepository {
       voyager = voyager.copyWith(
           afterReadings: afterReadings.toIList(),
           beforeReadings: beforeReadings.toIList());
+    } else {
+      voyager = Voyager(peopleCount: 12, ship: Ship900());
     }
     return voyager;
   }
