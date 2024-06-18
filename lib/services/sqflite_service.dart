@@ -29,10 +29,10 @@ class SqfliteService {
 
     List<Map<String, Object?>> results;
     if (isAfterReading) {
-      results = await db.query("before_readings",
+      results = await db.query("after_readings",
           where: "voyager_id = ?", whereArgs: [voyagerId]);
     } else {
-      results = await db.query("after_readings",
+      results = await db.query("before_readings",
           where: "voyager_id = ?", whereArgs: [voyagerId]);
     }
     if (results.isNotEmpty) {
