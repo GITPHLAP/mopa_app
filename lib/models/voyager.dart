@@ -22,7 +22,7 @@ class Voyager with _$Voyager {
   int isEnded() {
     // Counts check
     int tankCount = ship.tanks.length;
-
+    
     bool isCountsValid =
         beforeReadings.length == tankCount && afterReadings.length == tankCount;
 
@@ -31,6 +31,6 @@ class Voyager with _$Voyager {
     bool isAfterReadingsValid = afterReadings
         .any((element) => element.value.isInRange(1, element.tank.limit + 1));
 
-    return (isCountsValid && isBeforeReadingsValid && isAfterReadingsValid) ? 1 : 0;;
+    return (isCountsValid && isBeforeReadingsValid && isAfterReadingsValid) ? 1 : 0;
   }
 }

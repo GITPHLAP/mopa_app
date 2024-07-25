@@ -47,4 +47,18 @@ class SqfliteVoyagerRepository implements VoyagerRepository {
     await SqfliteService.batchUpsertReadings(beforeReadingDB, false, voyagerId);
     return; 
   }
+  
+  @override
+  Future saveVoyager(Voyager voyager) async {
+    VoyagerDB? voyagerdb = VoyagerDB.fromDTOVoyager(voyager);
+    voyagerdb.isEnded = 1;
+    int voyagerId = await SqfliteService.upsertVoyager(voyagerdb);
+
+    // Upsert readings
+    List<ReadingDB> afterReadingDB = voyager.afterReadings.map<ReadingDB>((r) => ReadingDB.fromDTOVoyager(r)).toList();
+    List<ReadingDB> beforeReadingDB = voyager.beforeReadings.map<ReadingDB>((r) => ReadingDB.fromDTOVoyager(r)).toList();
+    await SqfliteService.batchUpsertReadings(afterReadingDB, true, voyagerId);
+    await SqfliteService.batchUpsertReadings(beforeReadingDB, false, voyagerId);
+    return; 
+  }
 }

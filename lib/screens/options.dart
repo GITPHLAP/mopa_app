@@ -72,6 +72,15 @@ class _OptionsWidgetState extends ConsumerState<OptionsWidget> {
                     ),
                   ],
                 ),
+                const SizedBox(height: defaultSpace),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TextButton(onPressed: onSaveButton, child: const Text("Save Voyager")),
+                    TextButton(onPressed: onNewButton, child: const Text("New Voyager")),
+                  ],
+                ),
                 TextButton(
                   onPressed: onTestButton,
                   child: const Text("Test"),
@@ -107,5 +116,15 @@ class _OptionsWidgetState extends ConsumerState<OptionsWidget> {
         print(value);
       }
     }).catchError((e) => print(e));
+  }
+  void onSaveButton() {
+    ref
+        .read(voyagerManagerNotifierProvider.notifier)
+        .saveVoyager();
+  }
+  void onNewButton() {
+    ref
+        .read(voyagerManagerNotifierProvider.notifier)
+        .newVoyager();
   }
 }

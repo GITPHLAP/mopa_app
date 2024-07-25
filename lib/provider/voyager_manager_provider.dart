@@ -30,9 +30,7 @@ class VoyagerManagerNotifier extends _$VoyagerManagerNotifier {
   }
 
   void changeAmountOfPersons(int personCount) {
-    update((data) => data.copyWith.voyager(peopleCount: personCount)).then(
-        (value) =>
-            ref.watch(voyagerRepositoryProvider).upsertVoyager(value.voyager));
+    update((data) => data.copyWith.voyager(peopleCount: personCount));
   }
 
   Future<void> changeShip(ShipTypes shipType) async {
@@ -82,6 +80,15 @@ class VoyagerManagerNotifier extends _$VoyagerManagerNotifier {
         afterReadings:
             data.voyager.afterReadings.replace(indexOfElement, reading)));
     return;
+  }
+
+  void saveVoyager([Voyager? voyager]) {
+    voyager ??= state.value!.voyager;
+    ref.watch(voyagerRepositoryProvider).saveVoyager(voyager);
+  }
+
+  void newVoyager([Voyager? voyager]) {
+    update((data) => data.copyWith(voyager: Voyager(peopleCount: 22, ship: Ship900())));
   }
 }
 
