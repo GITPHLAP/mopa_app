@@ -64,4 +64,11 @@ class SqfliteService {
     }
     return await batch.commit(noResult: true);
   }
+  // TODO: Add logic to clear tables 
+  //   static Future clearTables() async {
+  //     Database db = await _store.database;
+  //     await db.delete("after_readings");
+  //     await db.delete("before_readings");
+  //     await db.delete("voyager");
+  // }
 }
