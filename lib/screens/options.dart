@@ -106,7 +106,7 @@ class _OptionsWidgetState extends ConsumerState<OptionsWidget> {
   void onSaveButton() {
     ref
         .read(voyagerManagerNotifierProvider.notifier)
-        .saveVoyager();
+        .finishVoyager();
   }
   void onNewButton() {
     ref

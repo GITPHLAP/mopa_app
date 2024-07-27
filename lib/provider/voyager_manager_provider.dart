@@ -82,9 +82,9 @@ class VoyagerManagerNotifier extends _$VoyagerManagerNotifier {
     return;
   }
 
-  void saveVoyager([Voyager? voyager]) {
+  void finishVoyager([Voyager? voyager]) {
     voyager ??= state.value!.voyager;
-    ref.watch(voyagerRepositoryProvider).saveVoyager(voyager);
+    ref.watch(voyagerRepositoryProvider).finishVoyager(voyager);
   }
 
   void newVoyager([Voyager? voyager]) {

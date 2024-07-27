@@ -49,7 +49,7 @@ class SqfliteVoyagerRepository implements VoyagerRepository {
   }
   
   @override
-  Future saveVoyager(Voyager voyager) async {
+  Future finishVoyager(Voyager voyager) async {
     VoyagerDB? voyagerdb = VoyagerDB.fromDTOVoyager(voyager);
     voyagerdb.isEnded = 1;
     int voyagerId = await SqfliteService.upsertVoyager(voyagerdb);
