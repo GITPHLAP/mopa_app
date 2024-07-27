@@ -4,4 +4,5 @@ abstract class VoyagerRepository {
   Future<Voyager> getLastUnfinishedVoyager();
   Future upsertVoyager(Voyager voyager);
   Future saveVoyager(Voyager voyager);
+  Future clearEverything();
 }

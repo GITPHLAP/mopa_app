@@ -90,6 +90,9 @@ class VoyagerManagerNotifier extends _$VoyagerManagerNotifier {
   void newVoyager([Voyager? voyager]) {
     update((data) => data.copyWith(voyager: Voyager(peopleCount: 22, ship: Ship900())));
   }
+  void clearDB() {
+    ref.watch(voyagerRepositoryProvider).clearEverything();
+  }
 }
 
 @riverpod

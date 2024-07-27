@@ -61,4 +61,9 @@ class SqfliteVoyagerRepository implements VoyagerRepository {
     await SqfliteService.batchUpsertReadings(beforeReadingDB, false, voyagerId);
     return; 
   }
+  
+  @override
+  Future clearEverything() async {
+    return await SqfliteService.clearTables();
+  }
 }

@@ -79,11 +79,8 @@ class _OptionsWidgetState extends ConsumerState<OptionsWidget> {
                   children: [
                     TextButton(onPressed: onSaveButton, child: const Text("Save Voyager")),
                     TextButton(onPressed: onNewButton, child: const Text("New Voyager")),
+                    TextButton(onPressed: onClearButton, child: const Text("Clear Everything")),
                   ],
-                ),
-                TextButton(
-                  onPressed: onTestButton,
-                  child: const Text("Test"),
                 ),
               ],
             ),
@@ -106,17 +103,6 @@ class _OptionsWidgetState extends ConsumerState<OptionsWidget> {
         .read(voyagerManagerNotifierProvider.notifier)
         .changeAmountOfPersons(int.parse(_personAmountController.text));
   }
-  void onTestButton() {
-    // Try fetching voyager from local storage
-    ref
-        .watch(voyagerRepositoryProvider)
-        .getLastUnfinishedVoyager()
-        .then((value) {
-      if (value != null) {
-        print(value);
-      }
-    }).catchError((e) => print(e));
-  }
   void onSaveButton() {
     ref
         .read(voyagerManagerNotifierProvider.notifier)
@@ -126,5 +112,9 @@ class _OptionsWidgetState extends ConsumerState<OptionsWidget> {
     ref
         .read(voyagerManagerNotifierProvider.notifier)
         .newVoyager();
+  }
+  void onClearButton() {
+    ref.read(voyagerManagerNotifierProvider.notifier)
+        .clearDB();
   }
 }
