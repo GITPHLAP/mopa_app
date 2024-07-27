@@ -93,6 +93,9 @@ class VoyagerManagerNotifier extends _$VoyagerManagerNotifier {
   void clearDB() {
     ref.watch(voyagerRepositoryProvider).clearEverything();
   }
+  void saveVoyager() {
+    ref.watch(voyagerRepositoryProvider).upsertVoyager(state.value!.voyager);
+  }
 }
 
 @riverpod

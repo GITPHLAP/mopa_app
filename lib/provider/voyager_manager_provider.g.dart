@@ -220,7 +220,7 @@ class _GetReadingValueFromTankAndTypeProviderElement
 }
 
 String _$voyagerManagerNotifierHash() =>
-    r'728e42342405a70796f25f1cef9469fa70bfe1aa';
+    r'ce9368fe1dfa829e312057472aa3e6fc9d100fa5';
 
 /// See also [VoyagerManagerNotifier].
 @ProviderFor(VoyagerManagerNotifier)

@@ -1,18 +1,20 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mopa_app/provider/voyager_manager_provider.dart';
 import 'package:mopa_app/screens/after/after.dart';
 import 'package:mopa_app/screens/before/before.dart';
 import 'package:mopa_app/screens/options.dart';
 import 'package:mopa_app/theme/theme.dart';
 
-class BottomNavigationMenu extends StatefulWidget {
+class BottomNavigationMenu extends ConsumerStatefulWidget {
   const BottomNavigationMenu({super.key});
 
   @override
-  State<BottomNavigationMenu> createState() => _BottomNavigationMenuState();
+  ConsumerState<BottomNavigationMenu> createState() => _BottomNavigationMenuState();
 }
 
-class _BottomNavigationMenuState extends State<BottomNavigationMenu> {
+class _BottomNavigationMenuState extends ConsumerState<BottomNavigationMenu> {
   static final List<Widget> _pages = <Widget>[
     const BeforeWidget(),
     const AfterWidget(),
@@ -20,6 +22,22 @@ class _BottomNavigationMenuState extends State<BottomNavigationMenu> {
   ];
 
   int _selectedIndex = 0;
+
+  late final AppLifecycleListener _listener;
+
+  @override
+  void initState() {
+    super.initState();
+    _listener = AppLifecycleListener(
+      onInactive: () => handleOnDetach(),
+    );
+  }
+
+  @override 
+  void dispose() {
+    _listener.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,5 +79,9 @@ class _BottomNavigationMenuState extends State<BottomNavigationMenu> {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  void handleOnDetach() {
+    ref.read(voyagerManagerNotifierProvider.notifier).saveVoyager();
   }
 }
